@@ -209,7 +209,7 @@ head(metrics.class.2020s,2) #show only the first 2 rows
 
 Export the data as a CSV file
 
-```{r }
+```{r, eval=FALSE}
 write.csv(metrics.class.2020s,file = "metrics results.csv") #write a csv file
 ```
 

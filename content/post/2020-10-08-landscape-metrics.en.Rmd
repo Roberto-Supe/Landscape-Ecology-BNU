@@ -96,12 +96,12 @@ check_landscape(beijing)
 The function to get the metrics is `calculate_lsm()` and there are a few options for us to play with.
 
 ```{r}
-metrics.class.2020 <-calculate_lsm(beijing, #a raster object
+metrics_class_2020 <-calculate_lsm(beijing, #a raster object
                                    what =c("lsm_c_ai", # metric name
                                            "lsm_c_frac_mn", #  metric name
                                            "lsm_l_division",# metric name
                                            "lsm_l_pd")) # metric name
-head(metrics.class.2020)
+head(metrics_class_2020)
 ```
 
 That is how it works. We got some metrics but what do they mean. You can open the [**Landscapemetrics document**](https://cran.r-project.org/web/packages/landscapemetrics/landscapemetrics.pdf) and have a look at everything that the package can do.
@@ -109,16 +109,16 @@ That is how it works. We got some metrics but what do they mean. You can open th
 First, remembering the names can be boring and complicated so we can take a look at the full list of metrics available in the package
 
 ```{r,eval=-3}
-metrics.names<-lsm_abbreviations_names #store the names 
-tail(metrics.names) #show the last 6 observations
-levels(factor(metrics.names$type)) # Metrics types
-view(metrics.names) # will open a new window with all the names
+metrics_names<-lsm_abbreviations_names #store the names 
+tail(metrics_names) #show the last 6 observations
+levels(factor(metrics_names$type)) # Metrics types
+view(metrics_names) # will open a new window with all the names
 ```
 
 We can get all the metrics for the `class`, `patch` or `landscape` if we set a **level**. The metrics for all the levels if we only set a **type** like `diversity metric`,`aggreagation metric`, `shape metric`, `core area metric`, `area and edge metric`, or `complexity metric`. If you leave them empty then you will get all the metrics for each map. The last may take a while it will depend on the capacity of your computer and how many maps you want to analyze.
 
 ```{r,eval=FALSE}
-class.metrics<-calculate_lsm(list(beijing), # add multiple maps 
+class_metrics<-calculate_lsm(list(beijing), # add multiple maps 
                              level = c("class"), #patch- landscape other options
                              type="aggreagation metric") #get all the metrics for the given level
 ```
@@ -189,8 +189,8 @@ These are the main functions of the package `landscapemetrics`, there are a lot 
 Let's give the right names to our layers and classes.
 
 ```{r}
-metrics.class.2020$Year<- plyr::revalue(factor(metrics.class.2020$layer),c("1"="2000s")) # revalue and make a new variable
-metrics.class.2020$land<-plyr::revalue(factor(metrics.class.2020$class),
+metrics_class_2020$Year<- plyr::revalue(factor(metrics_class_2020$layer),c("1"="2000s")) # revalue and make a new variable
+metrics_class_2020$land<-plyr::revalue(factor(metrics_class_2020$class),
                                        c("1"="Forest","2"="Built-up land",
                                          "3"="Cultivated Land","4"="Unused Land",
                                          "5"="Water Bodies","7"="Factories"))
@@ -203,14 +203,14 @@ metrics.class.2020$land<-plyr::revalue(factor(metrics.class.2020$class),
 We can reshape our data frame by `metrics` if you want to write tables with metrics as the columns and export that information.
 
 ```{r,eval=-3}
-metrics.class.2020s<-spread(metrics.class.2020[,c(5:8)],key =metric,value = value) #rows to columns by metric variable(key) and the values will take info from value variable 
-head(metrics.class.2020s,2) #show only the first 2 rows
+metrics_class_2020s<-spread(metrics_class_2020[,c(5:8)],key =metric,value = value) #rows to columns by metric variable(key) and the values will take info from value variable 
+head(metrics_class_2020s,2) #show only the first 2 rows
 ```
 
 Export the data as a CSV file
 
-```{r }
-write.csv(metrics.class.2020s,file = "metrics results.csv") #write a csv file
+```{r, eval=FALSE}
+write.csv(metrics_class_2020s,file = "metrics results.csv") #write a csv file
 ```
 
 ### Latitude and longitude maps
@@ -220,9 +220,9 @@ As aforementioned, if our data is in degrees then we must transform the raster c
 First, both points and maps need to be in the same coordinates otherwise your sampling areas will not be accurate. For the sampling locations, we will cover two options, change the coordinates of the matrix, and then proceed to do the buffer analysis. Second, use the `write` function to set a gpkg file containing our points. 
 
 ```{r,warning=TRUE}
-buffer.map<-raster("data/buffer/degree.tif")
+buffer_map<-raster("data/buffer/degree.tif")
 #freq(buffer.map)
-check_landscape(buffer.map) # look at the warning
+check_landscape(buffer_map) # look at the warning
 ```
 
 The current map CRS
@@ -235,8 +235,8 @@ Get a CRS in m for your map and then use `projectRaster` function to project and
 
 ```{r,warning=F,message=FALSE}
 albers<-"+proj=aea +lat_0=0 +lon_0=105 +lat_1=25 +lat_2=47 +x_0=0 +y_0=0 +ellps=krass +units=m +no_defs" #a CRS for our map in meters  
-beijing.meters<-projectRaster(buffer.map,crs=albers,method ="ngb") # change the crs in a raster file make sure you add method='ngb'
-check_landscape(beijing.meters) # now our map is ok 
+beijing_meters<-projectRaster(buffer_map,crs=albers,method ="ngb") # change the crs in a raster file make sure you add method='ngb'
+check_landscape(beijing_meters) # now our map is ok 
 ```
 
 It is more likely to have sampling points in degrees therefore, we will need to give the CRS used to get those points then change that to the map CRS.
@@ -267,7 +267,7 @@ buffer_sizes=c(500,750,1000,2000,3000) #we want buffers for this sizes
 
 buffer_results = buffer_sizes %>% #buffer data
   set_names() %>% #use the given names
-  map_dfr(~sample_lsm(list(beijing.meters), #map_dfr() return a data frame created by row-binding and column-binding respectively
+  map_dfr(~sample_lsm(list(beijing_meters), #map_dfr() return a data frame created by row-binding and column-binding respectively
                       what=c("lsm_c_pd","lsm_c_area_mn",
                              "lsm_l_shei","lsm_l_frac_mn"), #metrics 
                       y = sample_points, #locations
