@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>r studio on Even - A super concise theme for Hugo</title>
+    <link>/tags/r-studio/</link>
+    <description>Recent content in r studio on Even - A super concise theme for Hugo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 08 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/r-studio/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Landscape Metrics</title>
+      <link>/post/landscape-metrics/</link>
+      <pubDate>Thu, 08 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/landscape-metrics/</guid>
+      <description>This page was created to provide an additional option to quantify landscape configuration using R. The landscape subject to analysis is powerful and can represent any spatial phenomenon. R will quantify, sample, show, and the areal extent and spatial configuration of patches within a landscape. We will cover a few important steps for data analysis and visualization. Firstly, an introduction to how to use the package, the functions it has, and how to extract the information.</description>
+    </item>
+    
+    <item>
+      <title>Reading files and basic syntax</title>
+      <link>/post/software-installationa/</link>
+      <pubDate>Thu, 08 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/software-installationa/</guid>
+      <description>Reading filesThere are several options to read a file containing your data not only numerical as R can read text, book pages, among others for different analysis. Similarly, your data does not need to be in an excel file, you are able to import a lot of formats as long as you are using the right package. Similarly, it can be directly obtained from other online data sources.</description>
+    </item>
+    
+    <item>
+      <title>Software installation</title>
+      <link>/post/software-installation/</link>
+      <pubDate>Thu, 08 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/software-installation/</guid>
+      <description>R is an open source software, one of the leaders in its field. Learning R is learning programimg and all the carrer benefits you can get from having some experience with the program. If you are new to R then you will need to install a few things before being able to run landscapemetrics. This will be required only once.
+RFirst, we need to install R follow the link and then select your system.</description>
+    </item>
+    
+  </channel>
+</rss>

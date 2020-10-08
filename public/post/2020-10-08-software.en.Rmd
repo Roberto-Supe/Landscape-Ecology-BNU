@@ -1,0 +1,80 @@
+---
+title: Software installation
+author: Roberto Supe
+date: '2020-10-08'
+slug: software-installation
+categories:
+  - R
+tags:
+  - learning R
+  - R studio
+  - Rutorial
+  - R Markdown
+lastmod: '2020-10-08T17:36:24+08:00'
+keywords: []
+description: ''
+comment: no
+toc:
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: no
+mathjaxEnableSingleDollar: no
+mathjaxEnableAutoNumber: no
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+```{r include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE,
+                      warning = F,
+                      message = F,
+                      cache = F,
+                      eval = F) 
+```
+R is an open source software, one of the leaders in its field. Learning R is learning programimg and all the carrer benefits you can get from having some experience with the program. If you are new to R then you will need to install a few things before being able to run landscapemetrics. This will be required only once.  
+
+## R
+
+First, we need to install [R](https://cran.rstudio.com/) follow the link and then select your system. There will be an option saying  <code> install R for the first time </code>. Download the fill and install.
+
+## R Studio
+
+Second you we will use [R studio](https://rstudio.com/products/rstudio/download/#download). Most of the time we will only work with R studio but we require R to use R Studio. You may be wondering the differences between R and R studio, we will no go in detail in this post but, I will mention that R studio is the Graphics Interface Device that makes R much easier for us. 
+
+Similarly, install the versions recommended for your machine. 
+
+Once you finished the installation open R-studio at the top left corner select: <code> File -> New File -> R script </code>  and let's get started by writing some code to install packages.
+
+## Packages
+
+All the functions are stored in something called packages. You will need to install them so you can use all the information stored in that function. First, you need to know the name of the package and run the following code once as all the information will be saved to your computer.
+
+```{r}
+install.packages("tidyverse") 
+install.packages(c("landscapemetrics","raster",
+                    "scales","ggsci","plotrix","plyr")) #multiple packages in one line
+```
+
+
+## Libraries
+
+Once the packages have been installed you will need to tell the machine which packages you want to use. <code> library(package_name)</code> will do that for you. You will need to do this everytime you restart your R sesion. There will be packages with functions having the same name. Therefore, to use the right one use <code> package_name::function() </code>. You will see in the following pages that I used that in some areas.
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+library(landscapemetrics)
+library(scales)
+library(raster)
+library(plyr)
+library(plotrix)
+```
+
+

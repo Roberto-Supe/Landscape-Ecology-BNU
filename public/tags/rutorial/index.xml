@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rutorial on Even - A super concise theme for Hugo</title>
+    <link>/tags/rutorial/</link>
+    <description>Recent content in Rutorial on Even - A super concise theme for Hugo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 08 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/rutorial/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Software installation</title>
+      <link>/post/software-installation/</link>
+      <pubDate>Thu, 08 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/software-installation/</guid>
+      <description>R is an open source software, one of the leaders in its field. Learning R is learning programimg and all the carrer benefits you can get from having some experience with the program. If you are new to R then you will need to install a few things before being able to run landscapemetrics. This will be required only once.
+RFirst, we need to install R follow the link and then select your system.</description>
+    </item>
+    
+  </channel>
+</rss>
