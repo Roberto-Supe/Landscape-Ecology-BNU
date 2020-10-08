@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>learning R on Even - A super concise theme for Hugo</title>
+    <title>learning R on Landscape Ecology</title>
     <link>/tags/learning-r/</link>
-    <description>Recent content in learning R on Even - A super concise theme for Hugo</description>
+    <description>Recent content in learning R on Landscape Ecology</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Thu, 08 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/learning-r/index.xml" rel="self" type="application/rss+xml" />
