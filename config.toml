@@ -34,7 +34,7 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   identifier = "home"
   url = "/"
 [[menu.main]]
-  name = "Soe-BNU"
+  name = "SoE-BNU"
   weight = 20
   identifier = "archives"
   url = "https://env.bnu.edu.cn/english/aboutus/environmental/"
