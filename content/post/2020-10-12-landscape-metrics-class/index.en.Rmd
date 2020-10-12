@@ -1,24 +1,19 @@
 ---
-title: Landscape Metrics
+title: Landscape Metrics Class
 author: Roberto Supe
-date: '2020-10-08'
-slug: landscape-metrics
-  categories:
+date: '2020-10-12'
+slug: []
+categories:
   - R
 tags:
-  - BNU
   - learning R
-  - plot
-  - R Markdown
-  - r studio
-  - ggplot2
-  - landscapemetrics
+  - R studio
   - tutorial
-lastmod: '2020-10-08T16:51:14+08:00'
+lastmod: '2020-10-12T08:40:49+08:00'
 keywords: []
 description: ''
 comment: no
-toc:
+toc: no
 autoCollapseToc: no
 postMetaInFooter: no
 hiddenFromHomePage: no
@@ -35,6 +30,7 @@ sequenceDiagrams:
   enable: no
   options: ''
 ---
+
 
 ```{r include=FALSE}
 knitr::opts_chunk$set(collapse = TRUE,
@@ -372,6 +368,7 @@ library(cowplot) # works better with word documents
 cowplot::ggsave2(height = 8,width = 10,filename = "buffer selected.png",dpi=600,device = "png")
 
 ```
+
 
 
 
