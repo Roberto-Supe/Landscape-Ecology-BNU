@@ -7,6 +7,7 @@ enableRobotsTXT = true
 enableEmoji = true
 theme = "hugo-theme-even"
 enableGitInfo = false # use git commit log to generate lastmod record # 可根据 Git 中的提交生成最近更新记录。
+#ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$"] #html may need the "_files$" to read the images
 
 # Syntax highlighting by Chroma. NOTE: Don't enable `highlightInClient` and `chroma` at the same time!
 pygmentsOptions = "linenos=table"
@@ -28,26 +29,26 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   priority = 0.5
   filename = "sitemap.xml"
 
-[[menu.main]]             # config your menu              # 配置目录
-  name = "Home"
-  weight = 10
-  identifier = "home"
-  url = "/"
+#[[menu.main]]             # config your menu              # 配置目录
+#  name = "Home"
+#  weight = 10
+#  identifier = "home"
+#  url = "/"
 [[menu.main]]
   name = "SoE-BNU"
   weight = 20
   identifier = "archives"
-  url = "https://env.bnu.edu.cn/english/aboutus/environmental/"
+  url = "https://env.bnu.edu.cn/english/people/faculty/14648.html"
 [[menu.main]]
   name = "Download Data"
   weight = 30
   identifier = "tags"
   url = "https://github.com/Roberto-Supe/Landscape-Ecology-BNU-Data"
 #[[menu.main]]
-#  name = "Categories"
-#  weight = 40
-#  identifier = "categories"
-#  url = "/categories/"
+ # name = "About"
+  #weight = 40
+  #identifier = "categories"
+  #url = "/Post/"
 
 [params]
   version = "4.x"           # Used to give a friendly message when you have an incompatible update
@@ -184,9 +185,9 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
     #c-twitter = "http://localhost:1313"
     #d-facebook = "http://localhost:1313"
     #e-linkedin = "http://localhost:1313"
-    #b-google = "http://localhost:1313"
-    c-github = "https://github.com/Roberto-Supe"
-    #h-weibo = "http://localhost:1313"
+    f-google = "https://www.labxing.com/Shiliang"
+    g-github = "https://github.com/Roberto-Supe"
+    #h-research-gate = "https://www.researchgate.net/profile/Shiliang_Liu"
     #i-zhihu = "http://localhost:1313"
     #j-douban = "http://localhost:1313"
     #k-pocket = "http://localhost:1313"
