@@ -1,0 +1,107 @@
+---
+title: Shape files to raster
+author: Roberto Supe
+date: '2020-10-14'
+slug: Shape-file
+categories:
+  - R
+tags:
+  - BNU
+  - landscape metrics
+  - learning R
+  - plot
+  - R studio
+  - Rutorial
+  - tutorial
+lastmod: '2020-10-14T19:03:12+08:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: no
+mathjaxEnableSingleDollar: no
+mathjaxEnableAutoNumber: no
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+
+Inside the The data folder you will find two sets of shape files. They are composed of several files and in order for them to work propertly keep them all.
+
+First, we will transform those shape files to Raster files with the help of rgdal.
+
+```{r}
+#install.packages("rgdal",dependencies = TRUE) #only once 
+library(rgdal) 
+library(raster)
+```
+
+Read the shape files with `readOGR` and use plot to look at the map. 
+```{r}
+assigment_map <- readOGR("Data-shp/GLYlanduse.shp") #read your file
+plot(assigment_map)
+```
+
+Currently the map does not have a set of CRS so we will assign them to it because it is required for further analysis.[This page](https://spatialreference.org/ref/) has a lot of projections and CRS for your maps. R will require the text inclided in the **Proj4**  option, make sure you find your location or a CRS that includes the whole world. 
+
+```{r}
+#Check CRS of the map
+crs(assigment_map)
+```
+
+```{r}
+#map coordinates missing so we will set them to this system
+newcrs <- CRS("+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs") 
+crs(assigment_map)<-newcrs #add crs to a file
+crs(assigment_map)
+```
+
+## Create raster files
+
+Set up a raster "template" to use in rasterize() so our shape file can be transformed.
+
+```{r}
+r <- raster(ncol=180, nrow=180)
+extent(r) <- extent(assigment_map)
+```
+
+Rasterize the shapefile with `rasterize` make sure to have a target variable of a type double (numbers). The function `str` gives us the structure of any object. 
+
+```{r}
+str(assigment_map)
+```
+
+We can see that `NUM` our variable for the raster is a factor so we will need to change that before the raster of directly inside the function. We will do the last.
+
+```{r}
+raster_map<-rasterize(assigment_map, r,as.double(assigment_map$NUM))# Transform NUM
+class(raster_map)
+crs(raster_map)<-newcrs #add the crs
+plot(raster_map)
+```
+
+Export your new map with `writeRaster`
+```{r,eval=FALSE}
+writeRaster(raster_map, "assigment.tif") #export the file
+```
+
+* Try to do the same with the second map `Landuse` 
+
+#Activities
+
+1. Check your maps
+2. Calculate one type of LSM for each level or 6, 4 and 1 LSM for the landscape, class and patch level, respectively.
+3. Draw three graphs: one boxplot graph for your 6 the landscapes metrics, one bar graph for the classes and one for the patch level metric.
+4. Export your data and figures
+
+
+* Try to use as fewer lines of code as possible, You can get all the results in 2 or 3 lines. Run both maps at the same time as instructed.

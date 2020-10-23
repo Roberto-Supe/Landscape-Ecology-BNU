@@ -115,12 +115,12 @@ levels(factor(metrics_names$type)) # Metrics types
 view(metrics_names) # will open a new window with all the names
 ```
 
-We can get all the metrics for the `class`, `patch` or `landscape` if we set a **level**. The metrics for all the levels if we only set a **type** like `diversity metric`,`aggreagation metric`, `shape metric`, `core area metric`, `area and edge metric`, or `complexity metric`. If you leave them empty then you will get all the metrics for each map. The last may take a while it will depend on the capacity of your computer and how many maps you want to analyze.
+We can get all the metrics for the `class`, `patch` or `landscape` if we set a **level**. The metrics for all the levels if we only set a **type** like `diversity metric`,`aggregation metric`, `shape metric`, `core area metric`, `area and edge metric`, or `complexity metric`. If you leave them empty then you will get all the metrics for each map. The last may take a while it will depend on the capacity of your computer and how many maps you want to analyze.
 
 ```{r,eval=FALSE}
 class_metrics<-calculate_lsm(list(beijing), # add multiple maps 
                              level = c("class"), #patch- landscape other options
-                             type="aggreagation metric") #get all the metrics for the given level
+                             type="aggregation metric") #get all the metrics for the given level
 ```
 
 The workflow for this package is straightforward, we are able to get a lot of information for analysis and visualization 
