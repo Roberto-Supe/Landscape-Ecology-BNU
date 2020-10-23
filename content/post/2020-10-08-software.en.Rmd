@@ -59,7 +59,7 @@ All the functions are stored in something called packages. You will need to inst
 ```{r}
 install.packages("tidyverse") 
 install.packages(c("landscapemetrics","raster","sf","sp",
-                   "scales","ggsci","plotrix","plyr")) #multiple packages in one line
+                   "scales","ggsci","plotrix","plyr","rgdal")) #multiple packages in one line
 ```
 
 
