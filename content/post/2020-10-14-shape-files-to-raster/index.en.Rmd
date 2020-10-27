@@ -46,13 +46,14 @@ Inside the `Data-shp` folder, you will find two sets of shapefiles. They are com
 First, we will transform those shapefiles to Raster files with the help of rgdal.
 
 ```{r}
-#install.packages("rgdal",dependencies = TRUE) #only once 
+#install.packages(c("rgdal","openxlsx") #only once 
 library(rgdal) 
 library(raster)
 library(landscapemetrics)
 library(tidyverse)
 library(ggsci)
 library(ggpubr)
+library(openxlsx)
 ```
 
 ```{r include=FALSE}
@@ -70,7 +71,7 @@ Plot the map.
 plot(try_map)
 ```
 
-Currently, the map does not have a set of CRS so we will assign them to it because it is required for further analysis.[This page](https://spatialreference.org/ref/) has a lot of projections and CRS for your maps. R will require the text included in the **Proj4**  option, make sure you find your location or a CRS that includes the whole world. 
+Currently, the map does not have a set of CRS so we will assign them to it because it is required for further analysis.[This page](https://spatialreference.org/ref/) has a lot of projections and CRS for your maps. R will require the text included in the **Proj4**  option, make sure you find your location or a CRS that includes the whole world like the following. 
 
 ```{r}
 crs(try_map)
@@ -88,7 +89,7 @@ Set up a raster "template" to use in rasterize() so our shapefile can be transfo
 
 ```{r}
 r <- raster(ncol=180, nrow=180)
-extent(r) <- extent(try_map)
+extent(r) <- extent(try_map) 
 ```
 
 Rasterize the shapefile with `rasterize` make sure to have a target variable of a type double (numbers). The function `str` gives us the structure of any object. For specific parts of that object use `$` and `class`
@@ -117,9 +118,12 @@ writeRaster(raster_map, "assigment.tif") #export the file
 
 1. Check your maps with `landscapemetrics::check_landscape()`
 2. Calculate one type of LSM for each level or 6, 4, and 2 LSM for the landscape, class, and patch level, respectively.
-3. Draw three graphs: one boxplot graph for your 6 the landscapes metrics, one bar graph for the classes with error bars showing the standard deviation, and one for the patch level metric with error bars showing standard error.
+3. Draw three graphs: one boxplot graph for all your class metrics, one bar graph for the landscape level, and one for the patch level metric with error bars showing standard error.
 4. Export your data files and figures.
 
 ### Notes
 * Try to use as fewer lines of code as possible. You can get all the landscape metrics results in 2 or 3 lines. If you want to have different data sets then 6 to 9 lines will be just right.
 * Run both maps at the same time as instructed.
+* To `rasterize` the other shapefile map you will need to use as.factor(map_landplan$TYPE)
+
+

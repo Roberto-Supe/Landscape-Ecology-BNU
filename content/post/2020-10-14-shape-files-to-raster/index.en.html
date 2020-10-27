@@ -39,19 +39,20 @@ sequenceDiagrams:
 
 <p>Inside the <code>Data-shp</code> folder, you will find two sets of shapefiles. They are composed of several files and in order for them to work properly keep them all.</p>
 <p>First, we will transform those shapefiles to Raster files with the help of rgdal.</p>
-<pre class="r"><code>#install.packages(&quot;rgdal&quot;,dependencies = TRUE) #only once 
+<pre class="r"><code>#install.packages(c(&quot;rgdal&quot;,&quot;openxlsx&quot;) #only once 
 library(rgdal) 
 library(raster)
 library(landscapemetrics)
 library(tidyverse)
 library(ggsci)
-library(ggpubr)</code></pre>
+library(ggpubr)
+library(openxlsx)</code></pre>
 <p>Read the shape files with <code>readOGR</code>.</p>
 <pre class="r"><code>try_map &lt;- readOGR(&quot;Data-shp/GLYlanduse.shp&quot;) #read your file</code></pre>
 <p>Plot the map.</p>
 <pre class="r"><code>plot(try_map)</code></pre>
 <p><img src="/post/2020-10-14-shape-files-to-raster/index.en_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<p>Currently, the map does not have a set of CRS so we will assign them to it because it is required for further analysis.<a href="https://spatialreference.org/ref/">This page</a> has a lot of projections and CRS for your maps. R will require the text included in the <strong>Proj4</strong> option, make sure you find your location or a CRS that includes the whole world.</p>
+<p>Currently, the map does not have a set of CRS so we will assign them to it because it is required for further analysis.<a href="https://spatialreference.org/ref/">This page</a> has a lot of projections and CRS for your maps. R will require the text included in the <strong>Proj4</strong> option, make sure you find your location or a CRS that includes the whole world like the following.</p>
 <pre class="r"><code>crs(try_map)
 ## CRS arguments: NA</code></pre>
 <pre class="r"><code>newcrs &lt;- CRS(&quot;+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs&quot;) 
@@ -64,7 +65,7 @@ crs(try_map)
 <h2>Create raster files</h2>
 <p>Set up a raster “template” to use in rasterize() so our shapefile can be transformed.</p>
 <pre class="r"><code>r &lt;- raster(ncol=180, nrow=180)
-extent(r) &lt;- extent(try_map)</code></pre>
+extent(r) &lt;- extent(try_map) </code></pre>
 <p>Rasterize the shapefile with <code>rasterize</code> make sure to have a target variable of a type double (numbers). The function <code>str</code> gives us the structure of any object. For specific parts of that object use <code>$</code> and <code>class</code></p>
 <pre class="r"><code>class(try_map$NUM)
 ## [1] &quot;character&quot;</code></pre>
@@ -88,7 +89,7 @@ plot(raster_map)</code></pre>
 <ol style="list-style-type: decimal">
 <li>Check your maps with <code>landscapemetrics::check_landscape()</code></li>
 <li>Calculate one type of LSM for each level or 6, 4, and 2 LSM for the landscape, class, and patch level, respectively.</li>
-<li>Draw three graphs: one boxplot graph for your 6 the landscapes metrics, one bar graph for the classes with error bars showing the standard deviation, and one for the patch level metric with error bars showing standard error.</li>
+<li>Draw three graphs: one boxplot graph for all your class metrics, one bar graph for the landscape level, and one for the patch level metric with error bars showing standard error.</li>
 <li>Export your data files and figures.</li>
 </ol>
 <div id="notes" class="section level3">
@@ -96,6 +97,7 @@ plot(raster_map)</code></pre>
 <ul>
 <li>Try to use as fewer lines of code as possible. You can get all the landscape metrics results in 2 or 3 lines. If you want to have different data sets then 6 to 9 lines will be just right.</li>
 <li>Run both maps at the same time as instructed.</li>
+<li>To <code>rasterize</code> the other shapefile map you will need to use as.factor(map_landplan$TYPE)</li>
 </ul>
 </div>
 </div>
